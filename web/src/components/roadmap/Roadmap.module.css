@@ -1,0 +1,373 @@
+/* Progress summary above the map */
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 24px;
+  margin-bottom: 48px;
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.summaryProgress {
+  display: grid;
+  flex: 1 1 260px;
+  gap: 8px;
+  max-width: 420px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.summaryProgress strong {
+  color: var(--text);
+}
+
+/* The map: nodes sit on a grid, edges are drawn in an SVG underneath */
+
+.canvas {
+  --node-w: min(236px, 31%);
+  position: relative;
+  max-width: 900px;
+  height: var(--canvas-h);
+  margin: 0 auto;
+}
+
+.edges {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.edge,
+.edgeDone {
+  fill: none;
+  stroke-width: 2;
+}
+
+.edge {
+  stroke: var(--edge);
+}
+
+.edgeDone {
+  stroke: var(--success);
+}
+
+.node {
+  position: absolute;
+  top: calc(var(--y) * var(--row-h));
+  left: calc((var(--x) + 0.5) / var(--columns) * 100% - var(--node-w) / 2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  width: var(--node-w);
+  height: var(--node-h);
+  padding: 8px 14px 14px;
+  background: var(--node-bg);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  text-align: center;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.node:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.node[data-state="complete"] {
+  border-color: var(--success);
+}
+
+.node[data-next] {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-glow);
+}
+
+.nodeTitle {
+  display: -webkit-box;
+  max-width: 100%;
+  overflow: hidden;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.nodeMeta {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.nodeBar {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  overflow: hidden;
+  background: var(--surface-2);
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.nodeBar > span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.node[data-state="complete"] .nodeBar > span {
+  background: var(--success);
+}
+
+.nextTag {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* On narrow screens the map becomes a list in roadmap order */
+@media (max-width: 720px) {
+  .canvas {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    height: auto;
+  }
+
+  .edges {
+    display: none;
+  }
+
+  .node {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    min-height: 72px;
+  }
+}
+
+/* Topic drawer */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(4, 5, 7, 0.6);
+  animation: fadeIn 0.15s ease-out;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  width: min(500px, 100%);
+  overflow-y: auto;
+  padding: 28px 28px 40px;
+  background: var(--bg-elev);
+  border-left: 1px solid var(--border);
+  box-shadow: -24px 0 48px rgba(0, 0, 0, 0.35);
+  outline: none;
+  animation: slideIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+}
+
+.drawerHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.drawerEra {
+  margin: 0 0 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.drawerTitle {
+  font-size: 28px;
+}
+
+.close {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.close:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.drawerSummary {
+  margin: 16px 0 0;
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+.requires {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+.chip {
+  padding: 3px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.chip:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.drawerProgress {
+  display: grid;
+  gap: 8px;
+  margin: 24px 0 14px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.lessons {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.lesson {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.lesson:first-child {
+  border-top: 0;
+}
+
+.lesson:hover {
+  background: var(--surface);
+}
+
+.check {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--success);
+  cursor: pointer;
+}
+
+.lessonBody {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.lessonTitle {
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.lessonTitle:hover {
+  color: var(--accent);
+}
+
+.lesson[data-complete] .lessonTitle {
+  color: var(--text-muted);
+}
+
+.lessonReading {
+  overflow: hidden;
+  font-size: 13px;
+  color: var(--text-faint);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.lessonSide {
+  display: grid;
+  justify-items: end;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer,
+  .backdrop {
+    animation: none;
+  }
+
+  .node {
+    transition: none;
+  }
+}
