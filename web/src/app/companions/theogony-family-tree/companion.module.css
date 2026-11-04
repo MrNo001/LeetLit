@@ -1,0 +1,59 @@
+/* The tree fills the window below the site header, so drop the page's width and padding. */
+
+:global(.main):has(> .page) {
+  max-width: none;
+  padding: 0;
+}
+
+.page {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: calc(100dvh - var(--header-h));
+}
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 24px;
+  padding: 10px 24px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+  color: var(--text-faint);
+}
+
+.crumbs a,
+.fullScreen {
+  color: var(--text-muted);
+}
+
+.crumbs a:hover,
+.fullScreen:hover {
+  color: var(--accent);
+}
+
+.fullScreen {
+  white-space: nowrap;
+}
+
+.frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: var(--bg);
+}
+
+@media (max-width: 640px) {
+  .bar {
+    padding: 8px 16px;
+  }
+}

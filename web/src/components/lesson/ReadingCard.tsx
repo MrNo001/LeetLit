@@ -1,4 +1,5 @@
-import { BookIcon } from "@/components/Icons";
+import Link from "next/link";
+import { BookIcon, TreeIcon } from "@/components/Icons";
 import { Inline, Prose } from "@/components/Prose";
 import type { Reading } from "@/content/types";
 import styles from "./Lesson.module.css";
@@ -35,6 +36,23 @@ export function ReadingCard({ reading }: { reading: Reading }) {
           <dd>{reading.locatorSystem}</dd>
         </div>
       </dl>
+
+      {reading.companions?.map((companion) => (
+        <Link key={companion.href} href={companion.href} className={styles.companion}>
+          <span className={styles.companionIcon}>
+            <TreeIcon />
+          </span>
+          <span className={styles.companionBody}>
+            <span className={styles.companionTitle}>{companion.title}</span>
+            <span className={styles.companionText}>
+              <Inline text={companion.description} />
+            </span>
+          </span>
+          <span className={styles.companionArrow} aria-hidden="true">
+            →
+          </span>
+        </Link>
+      ))}
 
       {reading.text ? (
         <Prose paragraphs={reading.text} className={styles.readingText} />

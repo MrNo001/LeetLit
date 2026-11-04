@@ -35,6 +35,17 @@ export function CloseIcon(props: IconProps) {
   );
 }
 
+export function TreeIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" strokeWidth={1.6} {...stroke} {...props}>
+      <rect x="9" y="3" width="6" height="5" rx="1.2" />
+      <rect x="3" y="16" width="6" height="5" rx="1.2" />
+      <rect x="15" y="16" width="6" height="5" rx="1.2" />
+      <path d="M12 8v4M6 16v-4h12v4" />
+    </svg>
+  );
+}
+
 export function BookIcon(props: IconProps) {
   return (
     <svg viewBox="0 0 24 24" width="20" height="20" strokeWidth={1.6} {...stroke} {...props}>

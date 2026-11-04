@@ -23,6 +23,7 @@ TypeScript is pinned to 5.x on purpose: `next build` type-checks through TypeScr
 | `/` | Roadmap cards. Greek Philosophy is live; Literature and Art are "coming soon". |
 | `/tracks/greek-philosophy` | The roadmap tree. Fundamentals are at the top and later topics build on them. Click a topic to open its lessons. `?topic=<id>` links straight to one topic. |
 | `/tracks/greek-philosophy/<lessonId>` | A lesson: introduction, reading, breakdown by section, questions, then mark complete and previous/next. |
+| `/companions/theogony-family-tree` | An interactive family tree of the gods in Hesiod's *Theogony*, linked from that lesson's reading. The tree is a self-contained page in `public/embeds/theogony-family-tree/`, shown in an iframe so its styles and scripts stay separate from the app's. |
 
 ## Structure
 
@@ -49,6 +50,7 @@ src/
 - **Ids.** Topic and lesson ids are permanent, because progress (and later, account data) refers to them. Titles can change freely; ids should not.
 - **Markup.** Text fields support `*italic*` and `**bold**`.
 - **Reading text.** Add `text: [...]` (one string per paragraph) to a lesson's `reading` to replace the placeholder.
+- **Companions.** Add `companions: [{ title, description, href }]` to a lesson's `reading` to link an interactive aid, such as the Theogony family tree, from the reading card.
 - **Breakdown locators.** These use the reading's standard reference system (Stephanus, Bekker or Diels–Kranz numbers), so they line up with any translation.
 - **Build-time checks.** `tracks.ts` stops the build if a lesson id appears twice or a `requires` entry points to a topic that doesn't exist.
 - **What reaches the browser.** Client components receive only lesson summaries (`summarizeNodes`), never full lesson bodies.

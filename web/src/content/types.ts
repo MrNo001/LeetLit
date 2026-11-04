@@ -31,11 +31,20 @@ export interface Reading {
   /** The reference system used by the breakdown, e.g. "Stephanus pages". */
   locatorSystem: string;
   translations: Translation[];
+  /** Interactive aids to keep open while reading, e.g. a family tree of the characters. */
+  companions?: Companion[];
   /**
    * The text itself, as paragraphs. Absent until a translation is licensed
    * or a public-domain edition is prepared; the page shows a placeholder.
    */
   text?: string[];
+}
+
+export interface Companion {
+  title: string;
+  description: string;
+  /** Site path of the companion page, e.g. "/companions/theogony-family-tree". */
+  href: string;
 }
 
 export interface BreakdownSection {

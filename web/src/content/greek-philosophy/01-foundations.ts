@@ -116,6 +116,14 @@ export const foundations: RoadmapNode = {
             publicDomain: false,
           },
         ],
+        companions: [
+          {
+            title: "Family tree of the gods",
+            description:
+              "Every being Hesiod names, from Chaos to the heroes: parents, partners and children, with the lines where they appear. Keep it open beside the text.",
+            href: "/companions/theogony-family-tree",
+          },
+        ],
       },
       breakdown: [
         {
