@@ -105,6 +105,7 @@ export const hellenistic: RoadmapNode = {
         locatorSystem: "Chapter numbers",
         translations: [
           { translator: "Elizabeth Carter", title: "All the Works of Epictetus", year: 1758, publicDomain: true },
+          { translator: "Thomas Wentworth Higginson", title: "The Works of Epictetus", year: 1890, publicDomain: true },
           {
             translator: "W. A. Oldfather",
             title: "Epictetus II (Loeb Classical Library)",

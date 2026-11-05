@@ -2,7 +2,8 @@ import { Inline } from "@/components/Prose";
 import type { BreakdownSection } from "@/content/types";
 import styles from "./Lesson.module.css";
 
-export function Breakdown({ sections }: { sections: BreakdownSection[] }) {
+/** `linkText` adds a link from each part to the place in the reading text where it begins. */
+export function Breakdown({ sections, linkText = false }: { sections: BreakdownSection[]; linkText?: boolean }) {
   return (
     <ol className={styles.breakdown}>
       {sections.map((section, i) => (
@@ -11,7 +12,14 @@ export function Breakdown({ sections }: { sections: BreakdownSection[] }) {
             {i + 1}
           </span>
           <div className={styles.partBody}>
-            <p className={styles.partLocator}>{section.locator}</p>
+            <p className={styles.partHead}>
+              <span className={styles.partLocator}>{section.locator}</span>
+              {linkText && (
+                <a href={`#text-part-${i + 1}`} className={styles.partRead}>
+                  Read this part ↑
+                </a>
+              )}
+            </p>
             <h3 className={styles.partTitle}>
               <Inline text={section.title} />
             </h3>

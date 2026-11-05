@@ -26,6 +26,8 @@ export const aristotleNature: RoadmapNode = {
         locatorSystem: "Bekker numbers",
         translations: [
           { translator: "Octavius Freire Owen", title: "The Organon", year: 1853, publicDomain: true },
+          { translator: "E. M. Edghill", title: "Categoriae (The Works of Aristotle, vol. I)", year: 1928, publicDomain: true },
+          { translator: "A. J. Jenkinson", title: "Analytica Priora (The Works of Aristotle, vol. I)", year: 1928, publicDomain: true },
           {
             translator: "J. L. Ackrill",
             title: "Categories and De Interpretatione",
@@ -179,6 +181,8 @@ export const aristotleNature: RoadmapNode = {
         locatorSystem: "Bekker numbers",
         translations: [
           { translator: "R. D. Hicks", title: "De Anima", year: 1907, publicDomain: true },
+          // In the US public domain from 1 January 2027.
+          { translator: "J. A. Smith", title: "De Anima (The Works of Aristotle, vol. III)", year: 1931, publicDomain: false },
           {
             translator: "Hugh Lawson-Tancred",
             title: "De Anima (On the Soul)",

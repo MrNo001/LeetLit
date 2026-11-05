@@ -8,9 +8,11 @@ import styles from "@/components/lesson/Lesson.module.css";
 import { LessonSidebar } from "@/components/lesson/LessonSidebar";
 import { Paywall } from "@/components/lesson/Paywall";
 import { ReadingCard } from "@/components/lesson/ReadingCard";
+import { ReadingText } from "@/components/lesson/ReadingText";
 import { Inline, Prose, plainText } from "@/components/Prose";
 import { findLesson, getTrack, summarizeLesson } from "@/lib/curriculum";
 import { canAccess } from "@/lib/plan";
+import { hasReadingText, loadReadingText } from "@/lib/readings";
 import { getViewer } from "@/lib/viewer";
 
 interface LessonPageProps {
@@ -38,6 +40,9 @@ export default async function LessonPage({ params }: LessonPageProps) {
   const viewer = await getViewer();
   const unlocked = canAccess(viewer.plan, lesson.access);
   const hasQuestions = unlocked && (lesson.questions?.length ?? 0) > 0;
+  // The reading text is lesson content too: it is only read from disk once the lesson is unlocked.
+  const text = unlocked ? await loadReadingText(lesson.id) : undefined;
+  const textStatus = text ? "shown" : !unlocked && (await hasReadingText(lesson.id)) ? "locked" : "missing";
 
   return (
     <div className={styles.layout}>
@@ -75,7 +80,8 @@ export default async function LessonPage({ params }: LessonPageProps) {
 
         <section id="reading" className={styles.section}>
           <h2 className={styles.sectionTitle}>Reading</h2>
-          <ReadingCard reading={lesson.reading} />
+          <ReadingCard reading={lesson.reading} text={textStatus} shown={text?.sources} />
+          {text && <ReadingText text={text} parts={lesson.breakdown} />}
         </section>
 
         {unlocked ? (
@@ -84,7 +90,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
             <p className={styles.sectionLede}>
               The reading, part by part. Read each part first, then use the summary to check what you took from it.
             </p>
-            <Breakdown sections={lesson.breakdown} />
+            <Breakdown sections={lesson.breakdown} linkText={!!text} />
           </section>
         ) : (
           <Paywall partCount={lesson.breakdown.length} questionCount={lesson.questions?.length ?? 0} />
@@ -131,6 +137,11 @@ export default async function LessonPage({ params }: LessonPageProps) {
           <li>
             <a href="#reading">Reading</a>
           </li>
+          {text && (
+            <li>
+              <a href="#text">The text</a>
+            </li>
+          )}
           {unlocked ? (
             <li>
               <a href="#breakdown">Breakdown</a>

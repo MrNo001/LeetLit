@@ -33,11 +33,6 @@ export interface Reading {
   translations: Translation[];
   /** Interactive aids to keep open while reading, e.g. a family tree of the characters. */
   companions?: Companion[];
-  /**
-   * The text itself, as paragraphs. Absent until a translation is licensed
-   * or a public-domain edition is prepared; the page shows a placeholder.
-   */
-  text?: string[];
 }
 
 export interface Companion {
@@ -45,6 +40,54 @@ export interface Companion {
   description: string;
   /** Site path of the companion page, e.g. "/companions/theogony-family-tree". */
   href: string;
+}
+
+/**
+ * A lesson's reading text, built by `npm run readings` from the downloaded
+ * sources (see web/sources/) into src/content/readings/<lessonId>.json.
+ * It is loaded on the server, after the access check, never imported.
+ */
+export interface ReadingText {
+  sources: ReadingSource[];
+  sections: ReadingSection[];
+}
+
+/** The edition a passage is taken from. */
+export interface ReadingSource {
+  id: string;
+  author?: string;
+  work?: string;
+  translator: string;
+  title: string;
+  year: number;
+  /** Public domain in the US. */
+  publicDomain: boolean;
+  /** Where the digital text comes from, e.g. "Perseus Digital Library". */
+  provider: string;
+  url?: string;
+  note?: string;
+}
+
+/** A run of text from one source. `part` marks where a breakdown part begins (1-based). */
+export interface ReadingSection {
+  source: string;
+  part?: number;
+  /** Names the passage when a reading gathers several, e.g. "Aristotle, *Metaphysics* I.3". */
+  title?: string;
+  note?: string;
+  blocks: ReadingBlock[];
+}
+
+/** Plain text, a reference number for the margin, or emphasis. */
+export type ReadingSegment = string | { ref: string } | { em: string };
+
+export interface ReadingBlock {
+  speaker?: string;
+  /** The speech carries on from the previous block, so its speaker isn't repeated. */
+  cont?: boolean;
+  verse?: boolean;
+  heading?: boolean;
+  text: ReadingSegment[];
 }
 
 export interface BreakdownSection {

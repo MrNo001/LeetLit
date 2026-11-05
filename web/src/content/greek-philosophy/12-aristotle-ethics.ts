@@ -1,5 +1,5 @@
 import type { RoadmapNode } from "../types";
-import { irwinEthics, rossEthics } from "./translations";
+import { irwinEthics, rackhamEthics, rossEthics } from "./translations";
 
 export const aristotleEthics: RoadmapNode = {
   id: "aristotle-ethics",
@@ -27,6 +27,7 @@ export const aristotleEthics: RoadmapNode = {
         locatorSystem: "Bekker numbers",
         translations: [
           rossEthics,
+          rackhamEthics,
           irwinEthics,
           { translator: "Roger Crisp", title: "Nicomachean Ethics", year: 2000, publicDomain: false },
         ],
@@ -98,7 +99,7 @@ export const aristotleEthics: RoadmapNode = {
         date: "4th century BC",
         selection: "Book II (1103a14–1109b26) and Book III.1–5 (1109b30–1115a3)",
         locatorSystem: "Bekker numbers",
-        translations: [rossEthics, irwinEthics],
+        translations: [rossEthics, rackhamEthics, irwinEthics],
       },
       breakdown: [
         {
@@ -166,6 +167,7 @@ export const aristotleEthics: RoadmapNode = {
         locatorSystem: "Bekker numbers",
         translations: [
           rossEthics,
+          rackhamEthics,
           { translator: "Benjamin Jowett", title: "Politics", year: 1885, publicDomain: true },
           { translator: "C. D. C. Reeve", title: "Politics", year: 1998, publicDomain: false },
         ],

@@ -47,6 +47,18 @@ export const grubeCooper: Translation = {
 export const republicTranslations: Translation[] = [
   jowett,
   {
+    translator: "Paul Shorey",
+    title: "Republic, Books I–V (Loeb Classical Library)",
+    year: 1930,
+    publicDomain: true,
+  },
+  {
+    translator: "Paul Shorey",
+    title: "Republic, Books VI–X (Loeb Classical Library)",
+    year: 1935,
+    publicDomain: false,
+  },
+  {
     translator: "G. M. A. Grube, rev. C. D. C. Reeve",
     title: "Republic",
     year: 1992,
@@ -64,6 +76,13 @@ export const rossEthics: Translation = {
   translator: "W. D. Ross",
   title: "Nicomachean Ethics",
   year: 1908,
+  publicDomain: true,
+};
+
+export const rackhamEthics: Translation = {
+  translator: "H. Rackham",
+  title: "The Nicomachean Ethics (Loeb Classical Library)",
+  year: 1926,
   publicDomain: true,
 };
 

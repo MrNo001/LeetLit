@@ -1,0 +1,43 @@
+{"sources":[{"id":"burnet-heraclitus","author":"John Burnet","work":"Early Greek Philosophy, “Herakleitos of Ephesos”","translator":"John Burnet","title":"Early Greek Philosophy (3rd ed.)","year":1920,"publicDomain":true,"provider":"Wikisource","url":"https://en.wikisource.org/wiki/Early_Greek_Philosophy/Herakleitos_of_Ephesos"},{"id":"plato-cratylus","author":"Plato","work":"Cratylus","translator":"Harold North Fowler","title":"Plato IV (Loeb Classical Library)","year":1926,"publicDomain":true,"provider":"Perseus Digital Library","url":"https://scaife.perseus.org/library/urn:cts:greekLit:tlg0059.tlg005.perseus-eng2/"}],
+"sections":[
+{"source":"burnet-heraclitus","title":"Heraclitus, fragments","part":1,"blocks":[
+{"text":[{"ref":"B30"},"This world, which is the same for all, no one of gods or men has made; but it was ever, is now, and ever shall be an ever-living Fire, with measures of it kindling, and measures going out."]}
+]},
+{"source":"burnet-heraclitus","part":2,"blocks":[
+{"text":[{"ref":"B31a"},"The transformations of Fire are, first of all, sea; and half of the sea is earth, half whirlwind. . . ."]}
+]},
+{"source":"burnet-heraclitus","blocks":[
+{"text":[{"ref":"B31b"},"It becomes liquid sea, and is measured by the same tale as before it became earth."]}
+]},
+{"source":"burnet-heraclitus","blocks":[
+{"text":[{"ref":"B90"},"All things are an exchange for Fire, and Fire for all things, even as wares for gold and gold for wares."]}
+]},
+{"source":"burnet-heraclitus","part":3,"blocks":[
+{"text":[{"ref":"B12, B91"},"You cannot step twice into the same rivers; for fresh waters are ever flowing in upon you."]}
+]},
+{"source":"plato-cratylus","title":"Plato, *Cratylus* 402a","blocks":[
+{"text":[{"ref":"402a"},"It sounds absurd, but I think there is some probability in it."],"speaker":"Socrates"},
+{"text":["What is this probability?"],"speaker":"Hermogenes"},
+{"text":["I seem to have a vision of Heracleitus saying some ancient words of wisdom as old as the reign of Cronus and Rhea, which Homer said too."],"speaker":"Socrates"},
+{"text":["What do you mean by that?"],"speaker":"Hermogenes"},
+{"text":["Heracleitus says, you know, that all things move and nothing remains still, and he likens the universe to the current of a river, saying that you cannot step twice into the same stream."],"speaker":"Socrates"}
+]},
+{"source":"burnet-heraclitus","title":"Heraclitus, fragments","part":4,"blocks":[
+{"text":[{"ref":"B36"},"For it is death to souls to become water, and death to water to become earth. But water comes from earth; and from water, soul."]}
+]},
+{"source":"burnet-heraclitus","blocks":[
+{"text":[{"ref":"B45"},"You will not find the boundaries of soul by travelling in any direction, so deep is the measure of it."]}
+]},
+{"source":"burnet-heraclitus","blocks":[
+{"text":[{"ref":"B117"},"A man, when he gets drunk, is led by a beardless lad, tripping, knowing not where he steps, having his soul moist."]}
+]},
+{"source":"burnet-heraclitus","blocks":[
+{"text":[{"ref":"B118"},"The dry soul is the wisest and best."]}
+]},
+{"source":"burnet-heraclitus","part":5,"blocks":[
+{"text":[{"ref":"B101"},"I have sought for myself."]}
+]},
+{"source":"burnet-heraclitus","note":"Burnet numbers the fragments in Bywater's order; here each is labelled with its Diels–Kranz number.","blocks":[
+{"text":[{"ref":"B119"},"Man’s character is his fate."]}
+]}
+]}

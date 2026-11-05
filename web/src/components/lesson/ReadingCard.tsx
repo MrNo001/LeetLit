@@ -1,12 +1,24 @@
 import Link from "next/link";
-import { BookIcon, TreeIcon } from "@/components/Icons";
-import { Inline, Prose } from "@/components/Prose";
-import type { Reading } from "@/content/types";
+import { BookIcon, LockIcon, TreeIcon } from "@/components/Icons";
+import { Inline } from "@/components/Prose";
+import type { Reading, ReadingSource } from "@/content/types";
 import styles from "./Lesson.module.css";
 
 const SKELETON_LINES = [92, 100, 96, 88, 98, 61];
 
-export function ReadingCard({ reading }: { reading: Reading }) {
+/**
+ * What the reading is and where to find it. The text itself, when there is one,
+ * follows the card (see ReadingText); `text` says whether it is shown, locked or not ready.
+ */
+export function ReadingCard({
+  reading,
+  text,
+  shown = [],
+}: {
+  reading: Reading;
+  text: "shown" | "locked" | "missing";
+  shown?: ReadingSource[];
+}) {
   return (
     <div className={styles.reading}>
       <div className={styles.readingHead}>
@@ -54,9 +66,19 @@ export function ReadingCard({ reading }: { reading: Reading }) {
         </Link>
       ))}
 
-      {reading.text ? (
-        <Prose paragraphs={reading.text} className={styles.readingText} />
-      ) : (
+      {text === "locked" && (
+        <div className={styles.placeholder} role="note">
+          <p className={styles.placeholderTitle}>
+            <LockIcon /> The text is part of Pro
+          </p>
+          <p>
+            Pro lessons include the full text, with its reference numbers in the margin and each part of the breakdown
+            marked where it begins. The translations below are all published, so you can also read it in one of them.
+          </p>
+        </div>
+      )}
+
+      {text === "missing" && (
         <div className={styles.placeholder} role="note">
           <p className={styles.placeholderTitle}>Reading text coming soon</p>
           <p>
@@ -79,8 +101,13 @@ export function ReadingCard({ reading }: { reading: Reading }) {
               <span>
                 {translation.translator}, <em>{translation.title}</em> ({translation.year})
               </span>
-              <span className={translation.publicDomain ? styles.publicDomain : styles.copyright}>
-                {translation.publicDomain ? "Public domain" : "In copyright"}
+              <span className={styles.badges}>
+                {shown.some((source) => source.translator === translation.translator && source.year === translation.year) && (
+                  <span className={styles.shownHere}>Shown below</span>
+                )}
+                <span className={translation.publicDomain ? styles.publicDomain : styles.copyright}>
+                  {translation.publicDomain ? "Public domain" : "In copyright"}
+                </span>
               </span>
             </li>
           ))}

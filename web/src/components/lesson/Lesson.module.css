@@ -291,13 +291,6 @@
   color: var(--accent);
 }
 
-.readingText {
-  padding: 20px 22px;
-  font-family: var(--font-serif);
-  font-size: 18px;
-  line-height: 1.75;
-}
-
 .placeholder {
   margin: 20px 22px 0;
   padding: 18px 20px;
@@ -313,6 +306,9 @@
 }
 
 .placeholder .placeholderTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin-bottom: 6px;
   font-weight: 600;
   color: var(--text);
@@ -362,6 +358,15 @@
   color: var(--text-muted);
 }
 
+.badges {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-self: flex-start;
+  gap: 6px;
+}
+
+.shownHere,
 .publicDomain,
 .copyright {
   flex: none;
@@ -383,9 +388,198 @@
   color: var(--text-faint);
 }
 
+.shownHere {
+  background: var(--accent-glow);
+  color: var(--accent);
+}
+
 .translationsNote {
   margin: 12px 0 0;
   font-size: 12px;
+  color: var(--text-faint);
+}
+
+/* Reading text: the passage itself, with reference numbers in the left margin */
+
+.text {
+  margin-top: 20px;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  scroll-margin-top: calc(var(--header-h) + 16px);
+}
+
+.textHead {
+  display: grid;
+  gap: 6px;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+.textHead p {
+  margin: 0;
+}
+
+.textSource {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.sourceLink {
+  white-space: nowrap;
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 3px;
+}
+
+.sourceLink:hover {
+  color: var(--accent);
+}
+
+.sourceNote {
+  display: block;
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+/* The left padding is the margin the reference numbers sit in. */
+.textBody {
+  padding: 4px 32px 28px 76px;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--text-prose);
+}
+
+.textBody p {
+  position: relative;
+  margin: 0 0 0.85em;
+}
+
+/* Out of the flow, but still on the line where it occurs. */
+.ref {
+  position: absolute;
+  left: -68px;
+  width: 54px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-style: normal;
+  line-height: 2.864;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--text-faint);
+  user-select: none;
+}
+
+.speaker {
+  margin-right: 0.55em;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.verse {
+  padding-left: 1.4em;
+  white-space: pre-line;
+}
+
+.textHeading {
+  margin: 1.8em 0 1em;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.textPart {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 28px -32px 22px -76px;
+  padding: 10px 22px;
+  background: var(--bg-elev);
+  border-block: 1px solid var(--border);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.4;
+  scroll-margin-top: calc(var(--header-h) + 16px);
+}
+
+.textBody > .textPart:first-child {
+  margin-top: -4px;
+  border-top: 0;
+}
+
+.textPartNumber {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.textPartTitle {
+  flex: 1;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.textPartLink {
+  flex: none;
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+.textPart:hover .textPartLink {
+  color: var(--accent);
+}
+
+.passage {
+  margin: 30px 0 12px;
+}
+
+.textPart + .passage {
+  margin-top: 0;
+}
+
+.passageTitle {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.passageCredit {
+  margin-top: 2px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text-faint);
+}
+
+.textBody .passageNote {
+  margin-top: -0.2em;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.55;
   color: var(--text-faint);
 }
 
@@ -439,9 +633,25 @@
   padding-top: 4px;
 }
 
+.partHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  margin: 0 0 6px;
+}
+
+.partRead {
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+.partRead:hover {
+  color: var(--accent);
+}
+
 .partLocator {
   display: inline-block;
-  margin: 0 0 6px;
   padding: 1px 8px;
   border-radius: 6px;
   background: var(--surface-2);
@@ -673,6 +883,30 @@
 }
 
 @media (max-width: 560px) {
+  /* No room for a margin: references go inline, as small raised numbers. */
+  .textBody {
+    padding: 4px 18px 22px;
+    font-size: 17px;
+  }
+
+  .ref {
+    position: static;
+    margin: 0 0.2em;
+    font-size: 10px;
+    line-height: 0;
+    vertical-align: super;
+  }
+
+  .textPart {
+    margin-inline: -18px;
+    padding-inline: 18px;
+  }
+
+  .textSource {
+    flex-direction: column;
+    gap: 4px;
+  }
+
   .readingFacts div {
     grid-template-columns: minmax(0, 1fr);
     gap: 2px;

@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "sources": "node scripts/fetch-sources.mjs",
+    "readings": "node scripts/build-readings.mjs"
   },
   "dependencies": {
     "next": "^16.4.3",

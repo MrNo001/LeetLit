@@ -112,6 +112,7 @@ export const sophists: RoadmapNode = {
           "*Encomium of Helen* (B11), complete; *On What Is Not* (B3), as summarized by Sextus Empiricus, *Against the Logicians* I.65–87",
         locatorSystem: "Section numbers",
         translations: [
+          { translator: "LaRue Van Hook", title: "The Classical Weekly 6.16 (Encomium of Helen)", year: 1913, publicDomain: true },
           {
             translator: "Rosamond Kent Sprague (ed.)",
             title: "The Older Sophists",
